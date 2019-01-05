@@ -1,0 +1,17 @@
+version: "2"
+services:
+  app:
+    container_name: api-sensor-dashboard
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  mongo:
+    container_name: api-sensor-dashboard-mongo
+    image: mongo
+    volumes:
+      - ./api-sensor-dashboard/data:/data/db
+    ports:
+      - "27017:27017"
